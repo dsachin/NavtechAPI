@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [test]
+    WITH PASSWORD = N'Nm~um>dslt<dkgten?rZyjngmsFT7_&#$!~<||BleuwGd<>9', SID = 0xA8F9DB1C2C104940A4298095E692B737, DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
+

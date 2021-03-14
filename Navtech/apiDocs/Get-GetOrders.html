@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>GET api/order/GetOrders?pageIndex={pageIndex}&amp;pageSize={pageSize}&amp;isSortedByAscending={isSortedByAscending}</title>
+
+    <link type="text/css" href="HelpPage/HelpPage.css" rel="stylesheet" />
+</head>
+<body>
+
+    <head>
+        <style>
+
+            .content-wrapper {
+                position: relative;
+                margin: 0 20px;
+            }
+
+            .logo {
+                float: left;
+                padding: 5px;
+                width: 10%;
+                position: absolute;
+            }
+
+            .heading {
+                float: right;
+                width: 100%;
+            }
+
+                .heading h1 {
+                    text-align: center;
+                }
+        </style>
+    </head>
+    <header class="sample-header header">
+        <div class="content-wrapper">
+            <div class="heading">
+                <h1>Web API Help Page</h1>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+
+        <section class="content-wrapper main-content clear-fix">
+
+            <h1>GET api/order/GetOrders?pageIndex={pageIndex}&amp;pageSize={pageSize}&amp;isSortedByAscending={isSortedByAscending}</h1>
+            <div>
+
+                <p>API is used to get the orders.</p>
+                <h3>Parameters</h3>
+                <table class="help-page-table">
+                    <thead>
+                        <tr><th>Name</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="parameter-name"><b>pageIndex (Required)</b></td>
+                            <td class="parameter-documentation">
+                                <pre>The page index for which records are to be fetched.</pre>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="parameter-name"><b>pageSize (Required)</b></td>
+                            <td class="parameter-documentation">
+                                <pre>Number of records to be displayed in a page.</pre>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="parameter-name"><b>isSortedByAscending (optional)</b></td>
+                            <td class="parameter-documentation">
+                                <pre>To get records from ascending or descending order.</pre>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Response Information</h2>
+                <h3>Response body formats</h3>
+                <div>
+                    <h4 class="sample-header">application/json, text/json</h4>
+                    <div class="sample-content">
+                        <span><b>Sample:</b></span>
+                        <pre class="wrapped">
+{
+  {
+    "Response": "Success",
+    "Message": "Data fetched successfully.",
+    "Data": [
+        {
+            "Id": 9,
+            "CustomerName": "Sachin",
+            "Email": "sachin@gmail.com",
+            "AmountPaid": 570.0,
+            "OrderStatus": "Ordered",
+            "PaymentType": "Cash"
+        },
+        {
+            "Id": 8,
+            "CustomerName": "Joy",
+            "Email": "joy@gmail.com",
+            "AmountPaid": 470.0,
+            "OrderStatus": "Ordered",
+            "PaymentType": "Cash"
+        },
+        {
+            "Id": 7,
+            "CustomerName": "John",
+            "Email": "John@gmail.com",
+            "AmountPaid": 350.0,
+            "OrderStatus": "Ordered",
+            "PaymentType": "Cash"
+        }
+    ],
+    "ErrorCode": null
+}
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h4 class="sample-header">On Failure</h4>
+        <div class="sample-content">
+            On failure, this method will return the following response based on parameters.
+            <pre class="wrapped">
+                            
+If orders does not exists
+{
+    "Response": "Success",
+    "Message": "No orders found for the given input.",
+    "Data": null,
+    "ErrorCode": null
+}
+                </pre>
+        </div>
+    </div>
+
+    </div>
+
+</body>
+</html>

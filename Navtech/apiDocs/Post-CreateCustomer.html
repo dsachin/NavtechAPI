@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Post api/Customer/CreateCustomer</title>
+    <link type="text/css" href="HelpPage/HelpPage.css" rel="stylesheet" />
+</head>
+<body>
+
+    <head>
+        <style>
+
+            .content-wrapper {
+                position: relative;
+                margin: 0 20px;
+            }
+
+            .logo {
+                float: left;
+                padding: 5px;
+                width: 10%;
+                position: absolute;
+            }
+
+            .heading {
+                float: right;
+                width: 100%;
+            }
+
+                .heading h1 {
+                    text-align: center;
+                }
+        </style>
+    </head>
+    <header class="sample-header header">
+        <div class="content-wrapper">
+            <div class="heading">
+                <h1> Web API Help Page</h1>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+
+        <section class="content-wrapper main-content clear-fix">
+
+            <h1>                Post api/Customer/CreateCustomer            </h1>
+
+                <h2>Request Information</h2>
+                <h3>Request body formats</h3>
+                <div>
+                    <h4 class="sample-header">application/json,x-www-urlencoded</h4>
+                    <div class="sample-content">
+                        <span><b>Sample:</b></span>
+                        <pre class="wrapped">
+Name:Jack
+Email:jack@qwe.com
+Mobile:5453
+</pre>
+                    </div>
+                </div>
+
+                <h2>Response Information</h2>
+                <h3>Response body formats</h3>
+                <div>
+                    <h4 class="sample-header">application/json, text/json</h4>
+                    <div class="sample-content">
+                        <span><b>Sample:</b></span>
+                        <pre class="wrapped">
+{
+{
+    "Response": "Success",
+    "Message": "Customer added Successfully.",
+    "Data": null,
+    "ErrorCode": null
+}
+}
+</pre>
+                    </div>
+                </div>
+                <h4 class="sample-header">On Failure</h4>
+                <div class="sample-content">
+                    On failure, this method will return the following response based on parameters.
+                    <pre class="wrapped">
+If the email is duplicate.
+{
+    "Response": "Error",
+    "Message": "Duplicate Email Id.",
+    "Data": null,
+    "ErrorCode": "250"
+}
+                            
+If inputs are invalid or not provided
+{
+    "Response": "Error",
+    "Message": "Provided inputs are invalid.",
+    "Data": null,
+    "ErrorCode": "250"
+}
+                </pre>
+                </div>
+            </div>
+
+    </div>
+
+</body>
+</html>

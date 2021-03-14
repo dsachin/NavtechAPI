@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" href="HelpPage/HelpPage.css" rel="stylesheet" />
+</head>
+<body>
+
+    <head>
+        <style>
+
+            .content-wrapper {
+                position: relative;
+                margin: 0 20px;
+            }
+
+            .logo {
+                float: left;
+                padding: 5px;
+                width: 10%;
+                position: absolute;
+            }
+
+            .heading {
+                float: right;
+                width: 100%;
+            }
+
+                .heading h1 {
+                    text-align: center;
+                }
+        </style>
+    </head>
+    <header class="sample-header header">
+        <div class="content-wrapper">
+            <div class="heading">
+                <h1>Web API Help Page</h1>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+
+        <section class="content-wrapper main-content clear-fix">
+
+            <h1>GET api/2.0/Customer/CreateCustomer</h1>
+            <div>
+
+                <h3>Parameters</h3>
+                <h2>Request Information</h2>
+                <h3>Request body formats</h3>
+                <div>
+                    <h4 class="sample-header">application/json,x-www-urlencoded</h4>
+                    <div class="sample-content">
+                        <span><b>Sample:</b></span>
+                        <pre class="wrapped">
+CustomerId:105
+Amount:750
+OrderStatusId:1
+PaymentTypeId:1
+products:[{"ProductId":1,"Quantity":1},{"ProductId": 2,"Quantity":2}]
+</pre>
+                    </div>
+                </div>
+                <h2>Response Information</h2>
+                <div>
+                    <pre class="wrapped">
+                {
+                    "Response": "Success",
+                    "Message": "Order created successfully.",
+                    "Data": null,
+                    "ErrorCode": null
+                }
+</pre>
+                </div>
+            </div>
+            <h4 class="sample-header">On Failure</h4>
+            <div class="sample-content">
+                On failure, this method will return the following response based on parameters.
+                <pre class="wrapped">
+                            
+Common error
+{
+    "Response": "Error",
+    "Message": "Error occurred while getting/posting data.",
+    "Data": null,
+    "ErrorCode": "201"
+}
+                </pre>
+            </div>
+    </div>
+
+
+</body>
+</html>
