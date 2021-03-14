@@ -1,0 +1,222 @@
+﻿USE [OrderManagement]
+GO
+/****** Object:  User [sac]    Script Date: 14-03-21 21:59:27 ******/
+CREATE USER [sac] WITHOUT LOGIN WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [test]    Script Date: 14-03-21 21:59:27 ******/
+CREATE USER [test] FOR LOGIN [test] WITH DEFAULT_SCHEMA=[db_securityadmin]
+GO
+/****** Object:  UserDefinedTableType [dbo].[OrderProducts]    Script Date: 14-03-21 21:59:28 ******/
+CREATE TYPE [dbo].[OrderProducts] AS TABLE(
+	[OrderId] [int] NULL,
+	[ProductId] [int] NULL,
+	[Quantity] [int] NULL,
+	[ModifiedDate] [datetime] NULL,
+	[CreatedDate] [datetime] NULL
+)
+GO
+/****** Object:  Table [dbo].[CustomerDetails]    Script Date: 14-03-21 21:59:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CustomerDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+	[Email] [nvarchar](100) NOT NULL,
+	[Mobile] [nvarchar](50) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[Status] [int] NOT NULL,
+ CONSTRAINT [Customer] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Order]    Script Date: 14-03-21 21:59:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Order](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CustomerId] [int] NOT NULL,
+	[Amount] [float] NOT NULL,
+	[OrderStatusId] [int] NOT NULL,
+	[PaymentTypeId] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[Status] [int] NOT NULL,
+ CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderProductMapping]    Script Date: 14-03-21 21:59:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderProductMapping](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[ProductId] [int] NOT NULL,
+	[Quantity] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[Status] [int] NOT NULL,
+ CONSTRAINT [PK_OrderProductMapping] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderStatus]    Script Date: 14-03-21 21:59:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderStatus](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Status] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_OrderStatus] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PaymentType]    Script Date: 14-03-21 21:59:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PaymentType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Type] [varchar](20) NOT NULL,
+	[StatusId] [int] NOT NULL,
+ CONSTRAINT [PK_PaymentType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Product]    Script Date: 14-03-21 21:59:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Product](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Details] [varchar](500) NOT NULL,
+	[Price] [float] NOT NULL,
+	[StockQuantity] [float] NOT NULL,
+	[Status] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[CustomerDetails] ON 
+
+INSERT [dbo].[CustomerDetails] ([Id], [Name], [Email], [Mobile], [CreatedDate], [ModifiedDate], [Status]) VALUES (2, N'Sachin', N'sachin@gmail.com', N'9503457408', CAST(N'2021-03-12T01:23:43.497' AS DateTime), CAST(N'2021-03-12T01:23:43.497' AS DateTime), 1)
+INSERT [dbo].[CustomerDetails] ([Id], [Name], [Email], [Mobile], [CreatedDate], [ModifiedDate], [Status]) VALUES (6, N'Sample', N'sad@ma.com', N'9503457405', CAST(N'2021-03-13T20:38:49.457' AS DateTime), CAST(N'2021-03-13T20:38:49.903' AS DateTime), 0)
+INSERT [dbo].[CustomerDetails] ([Id], [Name], [Email], [Mobile], [CreatedDate], [ModifiedDate], [Status]) VALUES (8, N'Jack', N'jack@qwe.com', N'74108520', CAST(N'2021-03-14T20:59:15.537' AS DateTime), CAST(N'2021-03-14T20:59:15.790' AS DateTime), 0)
+INSERT [dbo].[CustomerDetails] ([Id], [Name], [Email], [Mobile], [CreatedDate], [ModifiedDate], [Status]) VALUES (10, N'Jack', N'jack@qwe.comgg', N'74108520', CAST(N'2021-03-14T20:59:45.620' AS DateTime), CAST(N'2021-03-14T20:59:45.620' AS DateTime), 0)
+INSERT [dbo].[CustomerDetails] ([Id], [Name], [Email], [Mobile], [CreatedDate], [ModifiedDate], [Status]) VALUES (14, N'Jack', N'jack@qwe.comsadasdasd', N'saddf', CAST(N'2021-03-14T21:00:48.810' AS DateTime), CAST(N'2021-03-14T21:00:48.990' AS DateTime), 0)
+SET IDENTITY_INSERT [dbo].[CustomerDetails] OFF
+SET IDENTITY_INSERT [dbo].[Order] ON 
+
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (1, 2, 570, 1, 1, CAST(N'2021-03-14T00:51:27.463' AS DateTime), CAST(N'2021-03-14T00:51:28.200' AS DateTime), 0)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (2, 2, 570, 1, 1, CAST(N'2021-03-14T01:11:43.167' AS DateTime), CAST(N'2021-03-14T01:11:43.403' AS DateTime), 0)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (3, 2, 570, 1, 1, CAST(N'2021-03-14T01:14:35.273' AS DateTime), CAST(N'2021-03-14T01:14:36.103' AS DateTime), 0)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (4, 2, 570, 1, 1, CAST(N'2021-03-14T01:22:35.930' AS DateTime), CAST(N'2021-03-14T01:22:36.150' AS DateTime), 0)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (5, 2, 570, 1, 1, CAST(N'2021-03-14T01:24:38.340' AS DateTime), CAST(N'2021-03-14T01:24:38.603' AS DateTime), 0)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (6, 2, 570, 1, 1, CAST(N'2021-03-14T13:45:10.153' AS DateTime), CAST(N'2021-03-14T13:45:10.153' AS DateTime), 1)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (7, 2, 570, 1, 1, CAST(N'2021-03-14T13:45:30.027' AS DateTime), CAST(N'2021-03-14T13:45:30.027' AS DateTime), 1)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (8, 2, 570, 1, 1, CAST(N'2021-03-14T13:46:14.400' AS DateTime), CAST(N'2021-03-14T13:46:14.400' AS DateTime), 1)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (9, 2, 570, 1, 1, CAST(N'2021-03-14T13:46:58.980' AS DateTime), CAST(N'2021-03-14T13:46:58.980' AS DateTime), 1)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (11, 2, 750, 1, 1, CAST(N'2021-03-14T21:33:08.163' AS DateTime), CAST(N'2021-03-14T21:33:08.163' AS DateTime), 1)
+INSERT [dbo].[Order] ([Id], [CustomerId], [Amount], [OrderStatusId], [PaymentTypeId], [CreatedDate], [ModifiedDate], [Status]) VALUES (13, 2, 750, 1, 1, CAST(N'2021-03-14T21:43:56.843' AS DateTime), CAST(N'2021-03-14T21:43:56.843' AS DateTime), 1)
+SET IDENTITY_INSERT [dbo].[Order] OFF
+SET IDENTITY_INSERT [dbo].[OrderProductMapping] ON 
+
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (1, 1, 1, 500, CAST(N'2021-03-14T01:33:33.320' AS DateTime), CAST(N'2021-03-14T01:33:33.320' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (2, 1, 1, 500, CAST(N'2021-03-14T01:33:33.320' AS DateTime), CAST(N'2021-03-14T01:33:33.320' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (3, 1, 1, 500, CAST(N'2021-03-14T01:33:33.320' AS DateTime), CAST(N'2021-03-14T01:33:33.320' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (4, 6, 1, 500, CAST(N'2021-03-14T13:45:10.153' AS DateTime), CAST(N'2021-03-14T13:45:10.153' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (5, 7, 1, 500, CAST(N'2021-03-14T13:45:30.027' AS DateTime), CAST(N'2021-03-14T13:45:30.027' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (6, 8, 1, 50, CAST(N'2021-03-14T13:46:14.400' AS DateTime), CAST(N'2021-03-14T13:46:14.400' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (7, 9, 1, 20, CAST(N'2021-03-14T13:46:58.980' AS DateTime), CAST(N'2021-03-14T13:46:58.980' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (8, 9, 2, 20, CAST(N'2021-03-14T13:46:58.980' AS DateTime), CAST(N'2021-03-14T13:46:58.980' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (9, 11, 1, 1, CAST(N'2021-03-14T21:33:08.163' AS DateTime), CAST(N'2021-03-14T21:33:08.163' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (10, 11, 2, 2, CAST(N'2021-03-14T21:33:08.163' AS DateTime), CAST(N'2021-03-14T21:33:08.163' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (11, 13, 1, 1, CAST(N'2021-03-14T21:43:56.843' AS DateTime), CAST(N'2021-03-14T21:43:56.843' AS DateTime), 1)
+INSERT [dbo].[OrderProductMapping] ([Id], [OrderId], [ProductId], [Quantity], [CreatedDate], [ModifiedDate], [Status]) VALUES (12, 13, 2, 2, CAST(N'2021-03-14T21:43:56.843' AS DateTime), CAST(N'2021-03-14T21:43:56.843' AS DateTime), 1)
+SET IDENTITY_INSERT [dbo].[OrderProductMapping] OFF
+SET IDENTITY_INSERT [dbo].[OrderStatus] ON 
+
+INSERT [dbo].[OrderStatus] ([Id], [Status]) VALUES (1, N'Ordered')
+INSERT [dbo].[OrderStatus] ([Id], [Status]) VALUES (2, N'Shipped')
+INSERT [dbo].[OrderStatus] ([Id], [Status]) VALUES (3, N'Delivered')
+INSERT [dbo].[OrderStatus] ([Id], [Status]) VALUES (4, N'Returned')
+SET IDENTITY_INSERT [dbo].[OrderStatus] OFF
+SET IDENTITY_INSERT [dbo].[PaymentType] ON 
+
+INSERT [dbo].[PaymentType] ([Id], [Type], [StatusId]) VALUES (1, N'Cash', 1)
+INSERT [dbo].[PaymentType] ([Id], [Type], [StatusId]) VALUES (4, N'Online', 1)
+SET IDENTITY_INSERT [dbo].[PaymentType] OFF
+SET IDENTITY_INSERT [dbo].[Product] ON 
+
+INSERT [dbo].[Product] ([Id], [Name], [Details], [Price], [StockQuantity], [Status], [CreatedDate], [ModifiedDate]) VALUES (1, N'Tshirt', N'POLO', 500, 23, 1, CAST(N'2021-03-13T19:17:37.027' AS DateTime), CAST(N'2021-03-13T19:17:37.027' AS DateTime))
+INSERT [dbo].[Product] ([Id], [Name], [Details], [Price], [StockQuantity], [Status], [CreatedDate], [ModifiedDate]) VALUES (2, N'Tshirt2', N'V Neck', 350, 790, 1, CAST(N'2021-03-13T19:17:37.027' AS DateTime), CAST(N'2021-03-13T19:17:37.027' AS DateTime))
+INSERT [dbo].[Product] ([Id], [Name], [Details], [Price], [StockQuantity], [Status], [CreatedDate], [ModifiedDate]) VALUES (4, N'POT', N'flower vase', 500, 100, 1, CAST(N'2021-03-13T19:17:37.027' AS DateTime), CAST(N'2021-03-13T19:17:37.027' AS DateTime))
+SET IDENTITY_INSERT [dbo].[Product] OFF
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [EmailAlreadyExist_Customer]    Script Date: 14-03-21 21:59:28 ******/
+ALTER TABLE [dbo].[CustomerDetails] ADD  CONSTRAINT [EmailAlreadyExist_Customer] UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[CustomerDetails] ADD  CONSTRAINT [DF_CustomerDetails_StatusId]  DEFAULT ((1)) FOR [Status]
+GO
+ALTER TABLE [dbo].[Order] ADD  CONSTRAINT [DF_Order_Status]  DEFAULT ((1)) FOR [Status]
+GO
+ALTER TABLE [dbo].[OrderProductMapping] ADD  CONSTRAINT [DF_OrderProductMapping_Status]  DEFAULT ((1)) FOR [Status]
+GO
+ALTER TABLE [dbo].[PaymentType] ADD  CONSTRAINT [DF_PaymentType_StatusId]  DEFAULT ((1)) FOR [StatusId]
+GO
+ALTER TABLE [dbo].[Product] ADD  CONSTRAINT [DF_Product_Status]  DEFAULT ((1)) FOR [Status]
+GO
+ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_CustomerDetails] FOREIGN KEY([CustomerId])
+REFERENCES [dbo].[CustomerDetails] ([Id])
+GO
+ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_CustomerDetails]
+GO
+ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_OrderStatus] FOREIGN KEY([OrderStatusId])
+REFERENCES [dbo].[OrderStatus] ([Id])
+GO
+ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_OrderStatus]
+GO
+ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_PaymentType] FOREIGN KEY([PaymentTypeId])
+REFERENCES [dbo].[PaymentType] ([Id])
+GO
+ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_PaymentType]
+GO
+ALTER TABLE [dbo].[OrderProductMapping]  WITH CHECK ADD  CONSTRAINT [FK_OrderProductMapping_Order] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Order] ([Id])
+GO
+ALTER TABLE [dbo].[OrderProductMapping] CHECK CONSTRAINT [FK_OrderProductMapping_Order]
+GO
+ALTER TABLE [dbo].[OrderProductMapping]  WITH CHECK ADD  CONSTRAINT [FK_OrderProductMapping_Product] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Product] ([Id])
+GO
+ALTER TABLE [dbo].[OrderProductMapping] CHECK CONSTRAINT [FK_OrderProductMapping_Product]
+GO
